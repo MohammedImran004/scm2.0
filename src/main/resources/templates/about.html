@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head}"></head>
+<body>
+<div th:replace="~{fragments/header :: body}"></div>
+
+<section class="py-24 bg-white dark:bg-gray-900 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+        <h1 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-6">
+            About Smart Contact Manager
+        </h1>
+        <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            <strong>Smart Contact Manager 2.0</strong> is built to give users a powerful and intuitive platform to manage their personal and professional contacts. We prioritize 
+            <strong>security</strong>, <strong>speed</strong>, and <strong>user experience</strong> to help you stay organized and connected.
+        </p>
+        <p class="mt-6 text-lg text-gray-700 dark:text-gray-300">
+            From small teams to large businesses, our scalable solution adapts to your needs. With cloud sync, data backups, and a modern UI, <strong>SCM 2.0</strong> stands apart.
+        </p>
+    </div>
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

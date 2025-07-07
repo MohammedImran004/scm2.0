@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head"></head>
+<body>
+<div th:replace="fragments/header :: body"></div>
+
+<section class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 py-12">
+  <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 space-y-6">
+    <h2 class="text-3xl font-bold text-gray-800 dark:text-white text-center">Signup Here</h2>
+
+    <form th:action="@{/register}" method="post" class="space-y-4">
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
+        <input id="username" type="text" name="username" required
+               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+        <input id="email" type="email" name="email" required
+               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+      </div>
+
+      <div>
+        <label for="contact" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Contact</label>
+        <input id="contact" type="tel" name="contact" required
+               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">New Password</label>
+        <input id="password" type="password" name="password" required
+               class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+      </div>
+
+      <div>
+        <label for="about" class="block text-sm font-medium text-gray-700 dark:text-gray-300">About</label>
+        <textarea id="about" name="about" rows="3"
+                  class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="Tell us something about you..."></textarea>
+      </div>
+
+      <!-- Submit + Reset -->
+      <div class="flex space-x-2 pt-2">
+        <button type="submit"
+                class="w-full py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-md hover:from-blue-600 hover:to-purple-700 transition">
+          Register
+        </button>
+        <button type="reset"
+                class="w-full py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+          Reset
+        </button>
+      </div>
+    </form>
+
+    <!-- Divider -->
+    <div class="flex items-center justify-center space-x-4 pt-6">
+      <span class="text-gray-400 text-sm">OR</span>
+    </div>
+
+    <!-- OAuth Buttons -->
+    <div class="flex flex-col space-y-3">
+      <a href="/oauth2/authorization/google"
+         class="flex items-center justify-center border border-gray-300 dark:border-gray-600 px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5 mr-2" alt="Google" />
+        <span class="text-sm text-gray-700 dark:text-gray-200">Login with Google</span>
+      </a>
+      <a href="/oauth2/authorization/github"
+         class="flex items-center justify-center bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 .5C5.6.5.5 5.7.5 12.2c0 5.2 3.4 9.6 8.2 11.2.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.6-.3-5.3-1.3-5.3-5.9 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.9 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.9 1.2 2 1.2 3.2 0 4.6-2.7 5.6-5.3 5.9.3.3.6.8.6 1.6v2.4c0 .3.2.7.8.6A11.7 11.7 0 0 0 23.5 12C23.5 5.6 18.4.5 12 .5z" />
+        </svg>
+        <span class="text-sm">Login with Github</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
