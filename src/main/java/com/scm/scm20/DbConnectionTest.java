@@ -3,7 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.scm.scm20.repository.UserRepository;
+import com.scm.scm20.repository.UserRepo;
 
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class DbConnectionTest implements CommandLineRunner {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepo userRepository;
 
     @Override
     public void run(String... args) throws Exception {
