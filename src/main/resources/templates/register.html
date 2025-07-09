@@ -6,8 +6,14 @@
 
 <section class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4 py-12">
   <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 space-y-6">
+
+    <!-- Title -->
     <h2 class="text-3xl font-bold text-gray-800 dark:text-white text-center">Signup Here</h2>
 
+    <!-- ✅ Flash Message Fragment -->
+    <div th:replace="fragments/messagebox :: messagebox"></div>
+
+    <!-- ✅ Signup Form -->
     <form th:action="@{/do-register}" th:object="${userForm}" method="post" class="space-y-4">
 
       <!-- Name -->
@@ -15,6 +21,7 @@
         <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
         <input id="name" type="text" th:field="*{name}" required
                class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-red-500 text-sm mt-1"></p>
       </div>
 
       <!-- Email -->
@@ -22,6 +29,7 @@
         <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
         <input id="email" type="email" th:field="*{email}" required
                class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-red-500 text-sm mt-1"></p>
       </div>
 
       <!-- Phone Number -->
@@ -29,6 +37,7 @@
         <label for="phoneNumber" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Phone Number</label>
         <input id="phoneNumber" type="tel" th:field="*{phoneNumber}" required
                class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+        <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-red-500 text-sm mt-1"></p>
       </div>
 
       <!-- Password -->
@@ -36,6 +45,7 @@
         <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
         <input id="password" type="password" th:field="*{password}" required
                class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-red-500 text-sm mt-1"></p>
       </div>
 
       <!-- About -->
@@ -44,9 +54,10 @@
         <textarea id="about" th:field="*{about}" rows="3" required
                   class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   placeholder="Tell us something about you..."></textarea>
+        <p th:if="${#fields.hasErrors('about')}" th:errors="*{about}" class="text-red-500 text-sm mt-1"></p>
       </div>
 
-      <!-- Submit + Reset -->
+      <!-- Buttons -->
       <div class="flex space-x-2 pt-2">
         <button type="submit"
                 class="w-full py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-md hover:from-blue-600 hover:to-purple-700 transition">

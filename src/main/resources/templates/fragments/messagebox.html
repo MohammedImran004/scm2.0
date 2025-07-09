@@ -1,0 +1,17 @@
+<!-- fragments/messagebox.html -->
+<div th:fragment="messagebox">
+  <div th:if="${session.message}" 
+       th:with="msg=${session.message}" 
+       th:classappend="'text-' + ${msg.type} + '-800 border border-' + ${msg.type} + '-300 bg-' + ${msg.type} + '-50 dark:bg-gray-800 dark:text-' + ${msg.type} + '-400 dark:border-' + ${msg.type} + '-800'"
+       class="flex items-center p-4 mb-4 text-sm rounded-lg"
+       role="alert">
+
+    <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+         fill="currentColor" viewBox="0 0 20 20">
+      <path d="M18 10A8 8 0 1 1 2 10a8 8 0 0 1 16 0ZM9 5a1 1 0 1 1 2 0v4a1 1 0 0 1-2 0V5Zm1 8a1.1 1.1 0 1 1 0-2.2 1.1 1.1 0 0 1 0 2.2Z"/>
+    </svg>
+
+    <span class="sr-only">Info</span>
+    <div th:text="${msg.content}">This is a message</div>
+  </div>
+</div>
