@@ -18,9 +18,10 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
-public class  pageController {
+public class pageController {
     @Autowired
     private UserService userService;
+
     @RequestMapping("/home")
     public String home() {
         return "home";
@@ -43,40 +44,41 @@ public class  pageController {
 
     @RequestMapping("/register")
     public String register(Model model) {
-        model.addAttribute("userForm", new userForm());  // FIXED
+        model.addAttribute("userForm", new userForm()); // FIXED
         return "register";
     }
 
-   @PostMapping("/do-register")
-public String processRegister(@Valid @ModelAttribute userForm UserForm,
-                              BindingResult rBindingResult,
-                              HttpSession session) {
-    System.out.println("Processing registration");
-    
-    if (rBindingResult.hasErrors()) {
-        return "register";
+    @PostMapping("/do-register")
+    public String processRegister(@Valid @ModelAttribute userForm UserForm,
+            BindingResult rBindingResult,
+            HttpSession session) {
+        System.out.println("Processing registration");
+
+        if (rBindingResult.hasErrors()) {
+            return "register";
+        }
+        // if (userService.existsByPassword(UserForm.getPassword())) {
+        // // Attach manual error to the field
+        // rBindingResult.rejectValue("password", "error.password", "Password already
+        // exists");
+        // return "register";
+        // }
+        User user = User.builder()
+                .name(UserForm.getName())
+                .email(UserForm.getEmail())
+                .password(UserForm.getPassword())
+                .about(UserForm.getAbout())
+                .profilePic("default.png")
+                .phoneNumber(UserForm.getPhoneNumber())
+                .build();
+
+        User savedUser = userService.saveUser(user);
+        System.out.println(savedUser);
+
+        // ✅ Set success message in session
+        session.setAttribute("message", new Message("Successfully registered!", MessageType.green));
+
+        return "redirect:/register";
     }
-    if (userService.existsByPassword(UserForm.getPassword())) {
-        // Attach manual error to the field
-        rBindingResult.rejectValue("password", "error.password", "Password already exists");
-        return "register";
-    }
-    User user = User.builder()
-            .username(UserForm.getName())
-            .email(UserForm.getEmail())
-            .password(UserForm.getPassword())
-            .about(UserForm.getAbout())
-            .profileLink("default.png")
-            .phoneNumber(UserForm.getPhoneNumber())
-            .build();
-
-    User savedUser = userService.saveUser(user);
-    System.out.println(savedUser);
-
-    // ✅ Set success message in session
-    session.setAttribute("message", new Message("Successfully registered!", MessageType.green));
-
-    return "redirect:/register";
-}
 
 }
